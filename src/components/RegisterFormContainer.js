@@ -6,11 +6,14 @@ class RegisterFormContainer extends Component {
         console.log(values)
         window.alert(JSON.stringify(values, null, 4));
     }
-
+    getInitialValues = () => ({
+        preference: 'tabs',
+        signUp: true
+    })
     render() {
         return (
             <div>
-                <RegisterForm onSubmit={this.submit}/>
+                <RegisterForm onSubmit={this.submit} initialValues={this.getInitialValues()}/>
             </div>
         )
     }
