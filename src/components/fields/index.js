@@ -1,11 +1,14 @@
 import React from "react";
 
 export const customInput = (props) => {
-  console.log(props);
+  const { label, input, type, meta } = props;
   return (
     <div>
-      <label htmlFor={props.name}>{props.label}</label>
-      <input {...props.input} type={props.type} />
+      <label htmlFor={props.name}>{label}</label>
+      <input {...input} type={type} />
+      {meta.error && meta.touched && (
+        <div style={{ color: "red" }}>{meta.error}</div>
+      )}
     </div>
   );
 };
