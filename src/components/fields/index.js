@@ -1,9 +1,29 @@
 import React from "react";
+import cx from 'classnames';
+
+const getValidityClassName = meta => {
+    if (meta.active) {
+      return;
+    }
+    if (meta.touched && meta.invalid) {
+      return 'invalid';
+    }
+    if (meta.touched && meta.valid) {
+      return 'valid';
+    }
+  };
 
 export const customInput = (props) => {
   const { label, input, type, meta } = props;
   return (
-    <div>
+    <div
+      className={cx(
+        'custom-input-container',
+        { 'flex-row': type === 'checkbox' },
+        { dirty: meta.dirty },
+        getValidityClassName(meta)
+      )}
+    >
       <label htmlFor={props.name}>{label}</label>
       <input {...input} type={type} />
       {meta.error && meta.touched && (

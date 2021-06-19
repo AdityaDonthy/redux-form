@@ -2,7 +2,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { customInput, customSelect } from "./fields";
 import { required, minLength, maxLength } from "./../validators";
-
+import './RegisterForm.css';
 function RegisterFormComponent({ handleSubmit }) {
   return (
     <form onSubmit={handleSubmit}>
