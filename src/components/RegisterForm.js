@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import { customInput, customSelect } from "./fields";
-import { required, minLength, maxLength } from "./../validators";
+import { required, minLength, maxLength, matchesPassword, asyncValidate } from "./../validators";
 import './RegisterForm.css';
 function RegisterFormComponent({ handleSubmit }) {
   return (
@@ -27,6 +27,20 @@ function RegisterFormComponent({ handleSubmit }) {
         label="Username"
         validate={[required, minLength, maxLength]}
       />
+    <Field
+        name="password"
+        component={customInput}
+        type="password"
+        label="Password"
+        validate={[required]}
+    />
+    <Field
+        name="confirmPassword"
+        component={customInput}
+        type="password"
+        label="Confirm Password"
+        validate={[required, matchesPassword]}
+    />
       <Field
         name="preference"
         component={customSelect}
@@ -48,6 +62,8 @@ function RegisterFormComponent({ handleSubmit }) {
 
 const RegisterForm = reduxForm({
   form: "register form",
+  asyncValidate,
+  asyncBlurFields: ['username']
 })(RegisterFormComponent);
 
 export default RegisterForm;
